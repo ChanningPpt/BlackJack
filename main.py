@@ -44,18 +44,17 @@ def calculateHandValue(hand):
 playerHand = []
 dealerHand = []
 
-# Chip and betting system
-player_chips = 100  # Starting chips
+playerChips = 100
 
 while True:
-    print(f'You have {player_chips} chips.')
+    print(f'You have {playerChips} chips.')
     bet = int(input('Place your bet: '))
 
-    if bet > player_chips:
+    if bet > playerChips:
         print("You don't have enough chips!")
         continue
 
-    player_chips -= bet
+    playerChips -= bet
 
     playerHand.clear()
     dealerHand.clear()
@@ -89,20 +88,20 @@ while True:
         print('Dealer wins!')
     elif calculateHandValue(dealerHand) > 21:
         print('Player wins!')
-        player_chips += 2 * bet  # Player wins double the bet
+        playerChips += 2 * bet
     elif calculateHandValue(playerHand) > calculateHandValue(dealerHand):
         print('Player wins!')
-        player_chips += 2 * bet  # Player wins double the bet
+        playerChips += 2 * bet
     elif calculateHandValue(playerHand) < calculateHandValue(dealerHand):
         print('Dealer wins!')
     else:
         print('Push!')
-        player_chips += bet  # Return the bet to the player in case of a push
+        playerChips += bet
 
-    if player_chips == 0:
+    if playerChips == 0:
         print("You've run out of chips! Game over!")
         break
 
-    play_again = input('Do you want to play again? (yes/no) ').lower()
-    if play_again != 'yes':
+    playAgain = input('Do you want to play again? (yes/no) ').lower()
+    if playAgain != 'yes':
         break
